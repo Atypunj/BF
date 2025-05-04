@@ -1,23 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Birth Form</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 <body>
-  <div id="root">
+  <div class="container">
     <h1>🎉 Birth Form</h1>
     <form id="birthForm">
-      <label for="fullName">Full Name:</label><br />
-      <input type="text" id="fullName" name="fullName" required /><br /><br />
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" name="fullName" required />
 
-      <label for="dob">Date of Birth:</label><br />
-      <input type="date" id="dob" name="dob" required /><br /><br />
+      <label for="birthTime">Time of Birth (AM/PM):</label>
+      <select id="birthTime" name="birthTime" required>
+        <option value="">Select Time</option>
+        <script>
+          for (let h = 1; h <= 12; h++) {
+            ['AM', 'PM'].forEach(p => {
+              let option = document.createElement('option');
+              option.value = `${h}:00 ${p}`;
+              option.text = `${h}:00 ${p}`;
+              document.currentScript.parentElement.appendChild(option);
+            });
+          }
+        </script>
+      </select>
 
-      <label for="birthTime">Time of Birth:</label><br />
-      <input type="time" id="birthTime" name="birthTime" required /><br /><br />
+      <label for="birthPlace">Place of Birth:</label>
+      <input type="text" id="birthPlace" name="birthPlace" placeholder="Start typing..." required />
 
-      <label for="birthPlace">Place of Birth:</label><br />
-      <input type="text" id="birthPlace" name="birthPlace" required /><br /><br />
+      <label>Gender:</label>
+      <div class="gender-options">
+        <label><input type="radio" name="gender" value="Male" required /><img src="male.svg" alt="Male" title="Male" /></label>
+        <label><input type="radio" name="gender" value="Female" /><img src="female.svg" alt="Female" title="Female" /></label>
+        <label><input type="radio" name="gender" value="Other" /><img src="other.svg" alt="Other" title="Other" /></label>
+      </div>
 
       <button type="submit">Submit</button>
     </form>
     <div id="result"></div>
   </div>
 
-  <script src="assets/main.js"></script>
+  <script src="script.js"></script>
 </body>
+</html>
